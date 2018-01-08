@@ -1,15 +1,15 @@
 Challenge-000(guessme)
 ======================
-#####50 point
+##### 50 point
 -----------------
-##Description
+## Description
 ```
 Hi there. Can you find the right key that unlocks the flag?
 
 Platform: 64 bit Linux (developed on Ubuntu)
 ```
 
-##풀이
+## 풀이
 ```
 Enter a key: asdf
 FAIL
