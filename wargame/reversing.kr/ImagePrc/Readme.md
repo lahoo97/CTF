@@ -19,9 +19,10 @@ ImagePrc.exe 파일을 실행해보면 흰색 화면바탕에 Check라는 버튼
  SendMessageA((HWND)dword_4084E0, 0x30u, ::wParam, 0);
  return 0;
 ```
-처음에 프로그램이 실행되기 전에 위의 과정을 거치게 된다. Windows 운영체제에서 특정 윈도우 또는 메모리에 그림을 그리고 싶으면 DC(Device Context)가 필요하다. 그 후 GDI(graphics Device Interface)에서 제공하는 함수를 사용해서 그림을 그릴 수 있게 된다.
+ 처음에 프로그램이 실행되기 전에 위의 과정을 거치게 된다. Windows 운영체제에서 특정 윈도우 또는 메모리에 그림을 그리고 싶으면 DC(Device Context)가 필요하다. 그 후 GDI(graphics Device Interface)에서 제공하는 함수를 사용해서 그림을 그릴 수 있게 된다.
 GetDC() - CreateCompatibleBitmap() - CreateCompatibleDC() - SelectObject() -  Rectangle() - ReleaseDC() 순으로 함수가 호출되었다. 쉬운 설명을 위해 ImagePrc.exe의 흰색 부분을 도화지라고 지칭할 것이다.
-그림을 그리는 프로그램을 만들기 위한 DC를 만들어주는 함수로 _CreateCompatibleDC()_를 사용한다. 그렇지만 _CreateCompatibleDC()_ 함수를 사용해서 얻은 DC는 출력해줄 대상이 없는 상태로 그리기만 해주는 함수이다. 그래서 출력해줄 대상(도화지)를 _CreateCompatibleBitmap()_함수로 생성해줘야 한다. 따라서 _CreateCompatibleDC()_ 함수 이전에 CreateCompatibleBitmap()함수를 먼저 호출해준다. 그 후 SelectObject()함수로 그림을 그릴 장소(도화지)를 선택해준다. 그 후 Rectangle()함수로 도화지를 그리고 SendMessage()함수로 버튼과 폰트를 생성해주면 사용자한테 띄워줄 창을 완성하여 띄워준다.
+ 그림을 그리는 프로그램을 만들기 위한 DC를 만들어주는 함수로 __CreateCompatibleDC()__를 사용한다. 그렇지만 __CreateCompatibleDC()__ 함수를 사용해서 얻은 DC는 출력해줄 대상이 없는 상태로 그리기만 해주는 함수이다.
+ 그래서 출력해줄 대상(도화지)를 __CreateCompatibleBitmap()__함수로 생성해줘야 한다. 따라서 __CreateCompatibleDC()__ 함수 이전에 __CreateCompatibleBitmap()__함수를 먼저 호출해준다. 그 후 __SelectObject()__함수로 그림을 그릴 장소(도화지)를 선택해준다. 그 후 __Rectangle()__함수로 도화지를 그리고 __SendMessage()__함수로 버튼과 폰트를 생성해주면 사용자한테 띄워줄 창을 완성하여 띄워준다.
 ```
 .text:004013A3 loc_4013A3:
 .text:004013A3 mov     dl, [ecx]
